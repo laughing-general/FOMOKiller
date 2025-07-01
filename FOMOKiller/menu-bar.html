@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FOMOKiller Bottom Card Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Fredoka One', cursive;
+      background: #0f0f0f;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .app-container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .bottom-nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px;
+      background: #181818;
+      border-top: 2px solid #292929;
+      z-index: 10;
+    }
+
+    .nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #292929;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .nav-btn:hover {
+      background: #444;
+    }
+
+    .blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(8px);
+      background-color: rgba(0, 0, 0, 0.4);
+      z-index: 5;
+      display: none;
+    }
+
+    .card {
+      position: absolute;
+      bottom: 80px;
+      width: 85%;
+      height: 300px;
+      background: #f4f1ea;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      color: #000;
+      z-index: 20;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card h2 {
+      background: #000;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="blur-overlay" id="blurOverlay"></div>
+
+    <div class="card" id="popupCard">
+      <button class="close-btn" onclick="closeCard()">&times;</button>
+      <h2 id="cardTitle">SERVICE</h2>
+      <p>This is the content of the selected menu item.</p>
+    </div>
+
+    <div class="bottom-nav">
+      <div class="nav-btn" onclick="openCard('Dashboard')">📋</div>
+      <div class="nav-btn" onclick="openCard('Alarm')">⏰</div>
+      <div class="nav-btn" onclick="openCard('Tasks')">✉️</div>
+      <div class="nav-btn" onclick="openCard('Calendar')">📅</div>
+      <div class="nav-btn" onclick="openCard('Wallet')">💳</div>
+    </div>
+  </div>
+
+  <script>
+    const blurOverlay = document.getElementById('blurOverlay');
+    const popupCard = document.getElementById('popupCard');
+    const cardTitle = document.getElementById('cardTitle');
+
+    function openCard(title) {
+      cardTitle.innerText = title.toUpperCase();
+      blurOverlay.style.display = 'block';
+      popupCard.style.display = 'flex';
+    }
+
+    function closeCard() {
+      blurOverlay.style.display = 'none';
+      popupCard.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
